@@ -1,9 +1,10 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { MAX_LEVEL, expBetweenWithProgress, expToNextLevel, TICKETS } from './expData.js'
 import { calcPreciseTickets, calcTierFourOnly } from './ticketCalc.js'
 import TicketRow from './components/TicketRow.jsx'
 import LevelInput from './components/LevelInput.jsx'
 import IdentityRow from './components/IdentityRow.jsx'
+
 import './App.css'
 
 const EMPTY_OWNED = { 1: 0, 2: 0, 3: 0, 4: 0 }
@@ -19,6 +20,18 @@ function makeIdentity(overrides = {}) {
 }
 
 function App() {
+  const [showRarePopup, setShowRarePopup] = useState(false)
+
+  useEffect(() => {
+    // 1% chance to show a different background for fun
+    if (Math.random() < 0.01) {
+      document.body.classList.add('alt-background')
+      setShowRarePopup(true)
+    }
+
+    return () => document.body.classList.remove('alt-background')
+  }, [])
+
   const [mode, setMode] = useState('single') // 'single' | 'bulk'
 
   // ---- Single mode state ----
@@ -100,18 +113,30 @@ function App() {
   }
 
   return (
+    
     <div className="page">
+      {showRarePopup && (
+          <div className="popup-overlay">
+            <div className="popup">
+              <h2>YOU ARE LUCKY!</h2>
+              <p>You hit the 1% chance background. Pull NOW!</p>
+              <button onClick={() => setShowRarePopup(false)}>
+                ...
+              </button>
+            </div>
+          </div>
+        )}
       <div className="grain-overlay" />
 
       <header className="masthead">
         <div className="masthead__ticket-edge" aria-hidden="true" />
-        <p className="masthead__eyebrow">LCB · Identity Records Office</p>
-        <h1 className="masthead__title">Identity Leveler</h1>
+        <p className="masthead__eyebrow">LCB · Identity Exprience Calculator</p>
+        <h1 className="masthead__title">Exprience Calculator</h1>
         <p className="masthead__subtitle">
-          Calculate the exact EXP and Training Tickets required to advance an Identity from one level to another.
+          Calculate the exact EXP and Training Tickets required to advance an Identity from one level to another. For better resource management.
         </p>
       </header>
-
+      
       <main className="layout">
         <section className="panel panel--input" aria-labelledby="levels-heading">
           <div className="panel__header-row">

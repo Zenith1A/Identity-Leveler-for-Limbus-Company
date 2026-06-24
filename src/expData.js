@@ -35,13 +35,6 @@ export function expToNextLevel(currentLevel) {
   return EXP_PER_LEVEL[lvl + 1] ?? 0
 }
 
-// Same as expBetween, but accounts for EXP already earned toward the next
-// level past `currentLevel`. For example: currently level 9 with 26 EXP
-// already banked toward level 10, wanting to reach level 30 this credits
-// that 26 EXP against the total requirement.
-//
-// currentExp is clamped to the EXP needed for the very next level since any
-// amount beyond that would have already triggered a level-up in-game.
 export function expBetweenWithProgress(currentLevel, targetLevel, currentExp = 0) {
   const total = expBetween(currentLevel, targetLevel)
   if (total <= 0) return 0
@@ -50,7 +43,7 @@ export function expBetweenWithProgress(currentLevel, targetLevel, currentExp = 0
   return Math.max(0, total - credited)
 }
 
-// Identity Training Ticket EXP values (confirmed via Limbus Company Wiki).
+// Identity Training Ticket EXP values
 export const TICKETS = [
   { id: 1, name: 'Identity Training Ticket I', short: 'Tier I', exp: 50, image: 'Identity_Training_Ticket_I.png' },
   { id: 2, name: 'Identity Training Ticket II', short: 'Tier II', exp: 200, image: 'Identity_Training_Ticket_II.png' },

@@ -1,12 +1,5 @@
 import { TICKETS } from './expData.js'
 
-// "Precise mix" — finds the combination of all four ticket tiers that covers
-// the required EXP with the least possible overshoot (wasted EXP).
-//
-// True minimum-waste bin packing is NP-hard in general, but with only 4 fixed
-// denominations (50 / 200 / 1000 / 3000), a greedy estimate at each tier plus
-// a small search window around that estimate finds the optimal answer near-
-// instantly, even for the largest possible EXP values (level 1 -> 60).
 export function calcPreciseTickets(expNeeded) {
   if (expNeeded <= 0) {
     return { counts: { 1: 0, 2: 0, 3: 0, 4: 0 }, totalExp: 0, waste: 0 }
@@ -73,9 +66,6 @@ export function calcPreciseTickets(expNeeded) {
   return best
 }
 
-// "Tier IV only" — simplest approach, just buy enough Tier IV (highest value)
-// tickets to cover the requirement. Easy to track, but wastes more EXP on
-// average since there's no fine-tuning with smaller tickets.
 export function calcTierFourOnly(expNeeded) {
   if (expNeeded <= 0) {
     return { counts: { 1: 0, 2: 0, 3: 0, 4: 0 }, totalExp: 0, waste: 0 }

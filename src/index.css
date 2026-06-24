@@ -1,7 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;900&family=Cinzel+Decorative:wght@700;900&family=Archivo+Narrow:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+@font-face {
+  font-family: 'Pretendard Black';
+  src: url('/fonts/Pretendard Black.ttf') format('truetype');
+  font-weight: 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bebas Kai';
+  src: url('/fonts/Bebas Kai.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Firefox */
+* {
+    scrollbar-width: none;
+}
+
+/* IE/old Edge */
+* {
+    -ms-overflow-style: none;
+}
 
 :root {
-  /* Color tokens — gothic ledger / bus-to-hell palette */
   --ink: #120808;
   --wine-950: #1a0a0d;
   --wine-900: #2a0f14;
@@ -16,14 +42,10 @@
   --blood-bright: #c4303e;
   --line: rgba(201, 162, 75, 0.25);
 
-  /* Cinzel: chiseled engraved-capitals serif, closest free match to the
-     game's logo/title lettering. Archivo Narrow: condensed grotesque with
-     true italics, standing in for the clean, slightly military dossier-style
-     body text used throughout the game's UI. */
-  --font-display: 'Cinzel', serif;
-  --font-decorative: 'Cinzel Decorative', serif;
-  --font-serif: 'Archivo Narrow', 'Oswald', sans-serif;
-  --font-body: 'Archivo Narrow', 'Segoe UI', Arial, sans-serif;
+  --font-display: 'Pretendard Black', sans-serif;
+  --font-decorative: 'Pretendard Black', sans-serif;
+  --font-serif: 'Bebas Kai', sans-serif;
+  --font-body: 'Bebas Kai', sans-serif;
 
   color-scheme: dark;
 }
@@ -38,11 +60,16 @@ html, body {
 }
 
 body {
-  background: radial-gradient(ellipse at top, var(--wine-900) 0%, var(--ink) 55%, #0a0404 100%);
+  background: var(--bg-image, url('/story_private_room.png')) center / cover no-repeat fixed,
+    radial-gradient(ellipse at top, var(--wine-900) 0%, var(--ink) 55%, #0a0404 100%);
   color: var(--cream);
   font-family: var(--font-body);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
+}
+
+body.alt-background {
+  --bg-image: url('/Background2.png');
 }
 
 #root {
@@ -62,7 +89,6 @@ button {
   color: var(--cream);
 }
 
-/* subtle film-grain / vignette texture overlay */
 .grain-overlay {
   position: fixed;
   inset: 0;
