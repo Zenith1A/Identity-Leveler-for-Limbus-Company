@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;900&family=Cinzel+Decorative:wght@700;900&family=Archivo+Narrow:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+:root {
+  /* Color tokens — gothic ledger / bus-to-hell palette */
+  --ink: #120808;
+  --wine-950: #1a0a0d;
+  --wine-900: #2a0f14;
+  --wine-800: #401621;
+  --wine-700: #5c1f2c;
+  --brass: #c9a24b;
+  --brass-bright: #e8c873;
+  --cream: #ece3d3;
+  --cream-dim: #b8ab94;
+  --parchment: #d8c9a8;
+  --blood: #8a1f2b;
+  --blood-bright: #c4303e;
+  --line: rgba(201, 162, 75, 0.25);
+
+  /* Cinzel: chiseled engraved-capitals serif, closest free match to the
+     game's logo/title lettering. Archivo Narrow: condensed grotesque with
+     true italics, standing in for the clean, slightly military dossier-style
+     body text used throughout the game's UI. */
+  --font-display: 'Cinzel', serif;
+  --font-decorative: 'Cinzel Decorative', serif;
+  --font-serif: 'Archivo Narrow', 'Oswald', sans-serif;
+  --font-body: 'Archivo Narrow', 'Segoe UI', Arial, sans-serif;
+
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: radial-gradient(ellipse at top, var(--wine-900) 0%, var(--ink) 55%, #0a0404 100%);
+  color: var(--cream);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  color: var(--brass-bright);
+}
+
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: var(--blood);
+  color: var(--cream);
+}
+
+/* subtle film-grain / vignette texture overlay */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
