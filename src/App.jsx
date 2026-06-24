@@ -130,8 +130,8 @@ function App() {
 
       <header className="masthead">
         <div className="masthead__ticket-edge" aria-hidden="true" />
-        <p className="masthead__eyebrow">LCB · Identity Exprience Calculator</p>
-        <h1 className="masthead__title">Exprience Calculator</h1>
+        <p className="masthead__eyebrow">LCB · Identity Experience Calculator</p>
+        <h1 className="masthead__title">Experience Calculator</h1>
         <p className="masthead__subtitle">
           Calculate the exact EXP and Training Tickets required to advance an Identity from one level to another. For better resource management.
         </p>
@@ -312,7 +312,7 @@ function App() {
               <p className="panel__description">
                 {showOwned
                   ? `If you'd rather just burn through Tier IV tickets for the remainder, here's how many more you'd need.`
-                  : `If you'd rather not juggle four ticket types, here's how many Tier IV tickets alone would get the job done.`}
+                  : `If you'd rather not use four ticket types, here's how many Tier IV tickets alone would get the job done.`}
               </p>
               <TicketRow
                 counts={tierFour.counts}
